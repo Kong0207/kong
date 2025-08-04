@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("j7ItsC347dyRS3wtY"); // 🔑 아까 복사한 공개 키로 교체
+  })();
+</script>
   <meta charset="UTF-8" />
   <title>푸름이의 요청</title>
   <style>
@@ -216,13 +222,14 @@
             phone: <a href="tel:821021526456">821021526456</a>
           </div>
         </div>
-        <div class="form-area">
-          <label>👤 성명</label>
-          <input type="text" value="최푸름" />
-          <label>🌻 개수</label>
-          <input type="text" value="1개" />
-          <button onclick="alert('제출이 완료되었습니다!')">제출하기</button>
-        </div>
+         <form id="donation-form" class="form-area">
+         <label>👤 성명</label>
+         <input type="text" name="name" required />
+         <label>🌻 개수</label>
+         <input type="text" name="count" required />
+            <button type="submit">제출하기</button>
+         </form>
+         </div>
       </div>
     </div>
 
@@ -266,6 +273,18 @@
     function closeImageModal() {
       document.getElementById('imageModal').style.display = 'none';
     }
-  </script>
+
+  document.getElementById('donation-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm('service_0gr6xrj', 'template_uyo8z7l', this)
+      .then(function() {
+        alert('제출이 완료되었습니다!');
+      }, function(error) {
+        alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
+        console.error(error);
+      });
+  });
+</script>
 </body>
 </html>
