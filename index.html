@@ -141,9 +141,12 @@
       box-sizing: border-box;
     }
 
-    .bird-info {
-      max-width: 50%;
-    }
+    .bird-img {
+     width: 100%;
+     max-width: 885px;
+     height: auto;
+     display: block;
+}
 
     .bird-img {
       width: 885px;
@@ -162,7 +165,36 @@
     .contact a:hover {
       text-decoration: underline;
     }
-  </style>
+
+  /* ... 기존 스타일들 ... */
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 20px;
+  }
+
+  .bird-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bird-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .form-area {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 2rem;
+    transform: none;
+  }
+}
+</style>
 </head>
 <body>
 
