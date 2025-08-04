@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>푸름이의 요청</title>
+  <style>
+    body {
+      background: linear-gradient(white, #add8ff);
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* 상단 탭 버튼 영역 */
+    .tab-header {
+      display: flex;
+      margin: 15px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .tab-button {
+      flex: 1;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 1.1rem;
+      font-weight: 400;
+      background: none;
+      border: none;
+      border-bottom: 5px solid transparent;
+      cursor: pointer;
+    }
+
+    .tab-button.active {
+      font-weight: 700;
+      border-color: #020202;
+    }
+
+    /* 탭 콘텐츠 공통 */
+    .tab-content {
+      padding: 2rem 60px;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* 후원하기 form */
+    .form-area {
+      max-width: 300px;
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-area label {
+      display: block;
+      margin-top: 0.5rem;
+      font-weight: bold;
+    }
+
+    .form-area input {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.3rem;
+      box-sizing: border-box;
+    }
+
+    .form-area button {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      border: none;
+      background: #4da6ff;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .form-area button:hover {
+      background: #1e90ff;
+    }
+
+    /* 사진첩 스타일 */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 300px);
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .gallery-grid img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    /* 모달 (확대 이미지) */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay img {
+      max-width: 80vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.4);
+    }
+
+    /* bird-info 영역 */
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      padding: 2rem 60px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+
+    .bird-info {
+      max-width: 50%;
+    }
+
+    .bird-img {
+      width: 885px;
+    }
+
+    .contact {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .contact a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 탭 버튼 -->
+  <div class="tab-header">
+    <button class="tab-button active" onclick="switchTab('donate', this)">후원하기</button>
+    <button class="tab-button" onclick="switchTab('gallery', this)">사진첩</button>
+  </div>
+
+  <!-- 탭 콘텐츠 -->
+  <div class="tab-content">
+    <!-- 후원하기 탭 -->
+    <div id="donate" class="tab-pane active">
+      <div class="container">
+        <div class="bird-info">
+          <img src="./image/pureun.png" alt="푸름이 사진" class="bird-img" />
+          <div class="contact">
+            Contact me <br />
+            e-mail: <a href="mailto:bluebird1234@gmail.com">bluebird1234@gmail.com</a><br />
+            phone: <a href="tel:821021526456">821021526456</a>
+          </div>
+        </div>
+        <div class="form-area">
+          <label>👤 성명</label>
+          <input type="text" value="최푸름" />
+          <label>🌻 개수</label>
+          <input type="text" value="1개" />
+          <button onclick="alert('제출이 완료되었습니다!')">제출하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 사진첩 탭 -->
+    <div id="gallery" class="tab-pane">
+      <div class="gallery-grid">
+        <img src="./image/photo1.png" alt="photo1" onclick="showImage(this.src)" />
+        <img src="./image/photo2.png" alt="photo2" onclick="showImage(this.src)" />
+        <img src="./image/photo3.png" alt="photo3" onclick="showImage(this.src)" />
+        <img src="./image/photo4.png" alt="photo4" onclick="showImage(this.src)" />
+        <img src="./image/photo5.png" alt="photo5" onclick="showImage(this.src)" />
+        <img src="./image/photo6.png" alt="photo6" onclick="showImage(this.src)" />
+        <img src="./image/photo7.png" alt="photo7" onclick="showImage(this.src)" />
+        <img src="./image/photo8.png" alt="photo8" onclick="showImage(this.src)" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 이미지 모달 확대 -->
+  <div class="modal-overlay" id="imageModal" onclick="closeImageModal()">
+    <img id="modalImg" src="" alt="확대 이미지" />
+  </div>
+
+  <!-- 스크립트 -->
+  <script>
+    function switchTab(tabId, button) {
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      document.querySelectorAll('.tab-pane').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function showImage(src) {
+      const modal = document.getElementById('imageModal');
+      const img = document.getElementById('modalImg');
+      img.src = src;
+      modal.style.display = 'flex';
+    }
+
+    function closeImageModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
