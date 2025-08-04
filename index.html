@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  (function(){
-    emailjs.init("j7ItsC347dyRS3wtY"); // 🔑 아까 복사한 공개 키로 교체
-  })();
-</script>
   <meta charset="UTF-8" />
   <title>푸름이의 요청</title>
+  <link rel="icon" href="./image/pureun.png" />
   <style>
     body {
       background: linear-gradient(white, #add8ff);
@@ -18,7 +13,6 @@
       min-height: 100vh;
     }
 
-    /* 상단 탭 버튼 영역 */
     .tab-header {
       display: flex;
       margin: 15px;
@@ -42,7 +36,6 @@
       border-color: #020202;
     }
 
-    /* 탭 콘텐츠 공통 */
     .tab-content {
       padding: 2rem 60px;
     }
@@ -55,7 +48,6 @@
       display: block;
     }
 
-    /* 후원하기 form */
     .form-area {
       max-width: 300px;
       background: white;
@@ -92,7 +84,6 @@
       background: #1e90ff;
     }
 
-    /* 사진첩 스타일 */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, 300px);
@@ -114,7 +105,6 @@
       transform: scale(1.03);
     }
 
-    /* 모달 (확대 이미지) */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -133,7 +123,6 @@
       box-shadow: 0 0 10px rgba(255,255,255,0.4);
     }
 
-    /* bird-info 영역 */
     .container {
       display: flex;
       justify-content: space-between;
@@ -148,10 +137,10 @@
     }
 
     .bird-img {
-     width: 100%;
-     max-width: 885px;
-     height: auto;
-     display: block;
+      width: 100%;
+      max-width: 885px;
+      height: auto;
+      display: block;
     }
 
     .contact {
@@ -168,50 +157,41 @@
       text-decoration: underline;
     }
 
-  /* ... 기존 스타일들 ... */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 20px;
+      }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 20px;
-  }
+      .bird-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-  .bird-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+      .bird-img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+      }
 
-  .bird-img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-  }
-
-  .form-area {
-    width: 100%;
-    max-width: 300px;
-    margin-top: 2rem;
-    transform: none !important;
-    writing-mode: horizontal-tb !important;
-    rotate: none !important;
-  }
-}
-
-</style>
+      .form-area {
+        width: 100%;
+        max-width: 300px;
+        margin-top: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- 상단 탭 버튼 -->
   <div class="tab-header">
     <button class="tab-button active" onclick="switchTab('donate', this)">후원하기</button>
     <button class="tab-button" onclick="switchTab('gallery', this)">사진첩</button>
   </div>
 
-  <!-- 탭 콘텐츠 -->
   <div class="tab-content">
-    <!-- 후원하기 탭 -->
     <div id="donate" class="tab-pane active">
       <div class="container">
         <div class="bird-info">
@@ -222,18 +202,16 @@
             phone: <a href="tel:821021526456">821021526456</a>
           </div>
         </div>
-         <form id="donation-form" class="form-area">
-         <label>👤 성명</label>
-         <input type="text" name="name" required />
-         <label>🌻 개수</label>
-         <input type="text" name="count" required />
-            <button type="submit">제출하기</button>
-         </form>
-         </div>
+        <form id="donation-form" class="form-area">
+          <label>👤 성명</label>
+          <input type="text" name="name" required />
+          <label>🌻 개수</label>
+          <input type="text" name="count" required />
+          <button type="submit">제출하기</button>
+        </form>
       </div>
     </div>
 
-    <!-- 사진첩 탭 -->
     <div id="gallery" class="tab-pane">
       <div class="gallery-grid">
         <img src="./image/photo1.png" alt="photo1" onclick="showImage(this.src)" />
@@ -248,21 +226,22 @@
     </div>
   </div>
 
-  <!-- 이미지 모달 확대 -->
   <div class="modal-overlay" id="imageModal" onclick="closeImageModal()">
     <img id="modalImg" src="" alt="확대 이미지" />
   </div>
 
-  <!-- 스크립트 -->
+  <!-- EmailJS + 기능 스크립트 -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
+    // 탭 전환
     function switchTab(tabId, button) {
       document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
-
       document.querySelectorAll('.tab-pane').forEach(tab => tab.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
     }
 
+    // 사진 확대 모달
     function showImage(src) {
       const modal = document.getElementById('imageModal');
       const img = document.getElementById('modalImg');
@@ -274,17 +253,24 @@
       document.getElementById('imageModal').style.display = 'none';
     }
 
-  document.getElementById('donation-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+    // EmailJS 초기화 및 전송
+    document.addEventListener('DOMContentLoaded', function () {
+      emailjs.init("j7ItsC347dyRS3wtY"); // 공개 키 사용
 
-    emailjs.sendForm('service_0gr6xrj', 'template_uyo8z7l', this)
-      .then(function() {
-        alert('제출이 완료되었습니다!');
-      }, function(error) {
-        alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
-        console.error(error);
+      const form = document.getElementById('donation-form');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        emailjs.sendForm('service_0gr6xrj', 'template_uyo8z7l', this)
+          .then(function () {
+            alert('제출이 완료되었습니다!');
+            form.reset();
+          }, function (error) {
+            alert('제출 중 오류가 발생했습니다. 콘솔을 확인해주세요.');
+            console.error('이메일 전송 실패:', error);
+          });
       });
-  });
-</script>
+    });
+  </script>
 </body>
 </html>
