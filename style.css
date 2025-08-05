@@ -1,6 +1,6 @@
 .ipad-frame {
   position: relative;
-  width: 1000px; /* 아이패드 PNG 원본 너비 */
+  width: 1000px; /* PNG 원본 너비에 맞춰 조정 */
   margin: 0 auto;
 }
 
@@ -11,10 +11,10 @@
 
 .shader-bg {
   position: absolute;
-  top: 6.8%;
-  left: 5.6%;
-  width: 88.8%;
-  height: 86.4%;
+  top: 6.8%;    /* 아이패드 화면 시작 y좌표 */
+  left: 5.6%;   /* 아이패드 화면 시작 x좌표 */
+  width: 88.8%; /* 아이패드 화면 너비 */
+  height: 86.4%;/* 아이패드 화면 높이 */
   border-radius: 8px;
   overflow: hidden;
 }

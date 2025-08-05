@@ -1,19 +1,123 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>iPad ShaderGradient</title>
-  <link rel="stylesheet" href="style.css" /> <!-- CSS 연결 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iPad Gradient Animation with Icons</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #020202;
+    }
+
+    .ipad-wrapper {
+      position: relative;
+      width: 800px;
+      max-width: 90vw;
+      transform: scale(1.2);
+      transform-origin: center;
+    }
+
+    .ipad-frame {
+      width: 100%;
+      display: block;
+    }
+
+    .ipad-screen {
+      position: absolute;
+      top: 4%;
+      left: 3%;
+      width: 94%;
+      height: 92%;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gradient-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, #ffdc73, #ffb3ab, #cdb4ff);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+      z-index: 0;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .icon-row {
+      display: flex;
+      gap: 40px; /* 아이콘 간격 */
+      z-index: 1;
+    }
+
+    .icon-item img {
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .icon-item img:hover {
+      transform: scale(1.1); /* 마우스 오버 시 확대 효과 */
+    }
+  </style>
 </head>
 <body>
-  <div class="ipad-frame">
-    <img src="ipad.png" alt="iPad frame" class="frame-img" />
-    <iframe
-      src="https://www.shadergradient.co/customize?animate=on&axesHelper=on&bgColor1=%23000000&bgColor2=%23000000&brightness=1.1&cAzimuthAngle=180&cDistance=3.9&cPolarAngle=115&cameraZoom=1&color1=%23ff5ea7&color2=%23FE8989&color3=%23000000&destination=onCanvas&embedMode=on&envPreset=city&format=gif&fov=45&frameRate=10&grain=off&lightType=3d&pixelDensity=1&positionX=-0.5&positionY=0.1&positionZ=0&range=enabled&rangeEnd=40&rangeStart=0&reflection=0.1&rotationX=0&rotationY=0&rotationZ=235&shader=defaults&type=waterPlane&uAmplitude=0&uDensity=1.1&uFrequency=5.5&uSpeed=0.1&uStrength=2.4&uTime=0.2&wireframe=false"
-      frameborder="0"
-      class="shader-bg"
-    ></iframe>
+  <div class="ipad-wrapper">
+    <div class="ipad-screen">
+      <div class="gradient-bg"></div>
+
+      <div class="icon-row">
+        <div class="icon-item">
+          <a href="page1.html" target="_blank">
+            <img src="icon/archive.svg" alt="Archive">
+          </a>
+        </div>
+        <div class="icon-item">
+          <a href="page2.html" target="_blank">
+            <img src="icon/dearbelly.svg" alt="Dear Belly">
+          </a>
+        </div>
+        <div class="icon-item">
+          <a href="page3.html" target="_blank">
+            <img src="icon/archive.svg" alt="Archive">
+          </a>
+        </div>
+        <div class="icon-item">
+          <a href="page4.html" target="_blank">
+            <img src="icon/archive.svg" alt="Archive">
+          </a>
+        </div>
+        <div class="icon-item">
+          <a href="page5.html" target="_blank">
+            <img src="icon/archive.svg" alt="Archive">
+          </a>
+        </div>
+        <div class="icon-item">
+          <a href="page6.html" target="_blank">
+            <img src="icon/archive.svg" alt="Archive">
+          </a>
+        </div>
+        <div class="icon-item">
+          <a href="page7.html" target="_blank">
+            <img src="icon/archive.svg" alt="Archive">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <img src="ipad.png" alt="iPad Frame" class="ipad-frame">
   </div>
 </body>
 </html>
